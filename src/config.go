@@ -26,7 +26,7 @@ type Defaults struct {
 func getDefaults() Defaults {
 	d := new(Defaults)
 
-	//File
+	//File settings
 	d.output_path = "../out"
 
 	//Image
