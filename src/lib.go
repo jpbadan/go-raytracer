@@ -71,6 +71,12 @@ func (v Vec3) random(min, max float32) Vec3 {
 		z: randomFloat(min, max)}
 }
 
+func (v Vec3) nearZero() bool {
+	// Returns true if the vector is close to zero in all dimensions
+	s := 1e-8
+	return math.Abs(float64(v.x)) < s && math.Abs(float64(v.y)) < s && math.Abs(float64(v.z)) < s
+}
+
 func (c Color) toRGBA() color.RGBA {
 	red := uint8(255.999 * c.x)
 	green := uint8(255.999 * c.y)
@@ -87,4 +93,9 @@ func (c Color) correct(defaults Defaults) Color {
 
 	return Color{float32(r), float32(g), float32(b)}
 
+}
+
+//Returns the direction of the vector V when reflected on surface with normal N
+func vecReflect(vec, normal Vec3) Vec3 {
+	return vec.sub(normal.scale(2 * vec.dot(normal)))
 }

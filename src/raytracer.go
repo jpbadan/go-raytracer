@@ -6,7 +6,7 @@ import (
 	"math/rand"
 )
 
-func raytracer(defaults Defaults) {
+func raytracer(frameName string, defaults Defaults) {
 
 	// Image
 	aspect_ratio := defaults.image.aspect_ratio
@@ -15,12 +15,21 @@ func raytracer(defaults Defaults) {
 
 	//World
 	var world HittableList
-	for i := float32(-0.5); i <= 0.5; i += 0.01 {
-		world.add(Sphere{Point3{i, 0, -1}, float32(math.Abs(float64(i * 0.6)))})
-	}
+
 	// world.clear()
-	// world.add(Sphere{Point3{0, 0, -1}, 0.5})
-	world.add(Sphere{Point3{0, -100.5, -1}, 100})
+	materialGround := Lambertian{Color{0.8, 0.8, 0.0}}
+	materialCenter := Lambertian{Color{0.3, 0.4, 0.5}}
+	materialLeft := Metal{Color{0.8, 0.8, 0.8}, 0.05}
+	materialRight := Metal{Color{0.8, 0.6, 0.2}, 1.0}
+
+	world.add(Sphere{Point3{0, -100.5, -1}, 100, materialGround})
+	world.add(Sphere{Point3{0, 0, -1}, 0.5, materialCenter})
+	world.add(Sphere{Point3{-1, 0, -1}, 0.5, materialLeft})
+	world.add(Sphere{Point3{1, 0, -1}, 0.5, materialRight})
+
+	// for i := float32(-0.5); i <= 0.5; i += 0.01 {
+	// 	world.add(Sphere{Point3{i, 0, -1}, float32(math.Abs(float64(i * 0.6))), materialLeft})
+	// }
 
 	// Camera
 	cam := newCamera(defaults)
@@ -44,7 +53,7 @@ func raytracer(defaults Defaults) {
 			newRgba.SetRGBA(i, int(math.Abs(float64(image_height-j))), pixelColor.correct(defaults).toRGBA())
 
 		}
-		saveImage(newRgba, "test-Render")
+		saveImage(newRgba, frameName)
 
 	}
 }
