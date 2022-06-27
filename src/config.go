@@ -27,12 +27,12 @@ func getDefaults() Defaults {
 	d := new(Defaults)
 
 	//File settings
-	d.output_path = "../out"
+	d.output_path = "../out/"
 
 	//Image
 	d.image.aspect_ratio = 16.0 / 10.0
-	d.image.width = 150
-	d.image.samples_per_pixel = 50 //100
+	d.image.width = 128
+	d.image.samples_per_pixel = 10 //100
 	d.image.gamma_correction = 0.5 //0.5
 
 	//Camera
@@ -41,7 +41,7 @@ func getDefaults() Defaults {
 	d.camera.aspect_ratio = d.image.aspect_ratio
 
 	//Ray
-	d.ray.iterationDepth = 10        //50
+	d.ray.iterationDepth = 5         //50
 	d.ray.reflectionThreshold = 0.01 //0.001
 
 	return *d

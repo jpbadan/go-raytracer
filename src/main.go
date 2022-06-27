@@ -8,5 +8,7 @@ package main
 
 func main() {
 	//TestImageOutput()
-	raytracer(getDefaults())
+	defaultSettings := getDefaults()
+
+	raytracer("test-render", defaultSettings)
 }
