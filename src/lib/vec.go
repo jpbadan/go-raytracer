@@ -74,7 +74,3 @@ func (a Vec) NearZero() bool {
 	s := 1e-8
 	return math.Abs(a.X) < s && math.Abs(a.Y) < s && math.Abs(a.Z) < s
 }
-
-func Reflect(vec, normal Vec) Vec {
-	return vec.Sub(normal.Scale(2 * vec.Dot(normal)))
-}

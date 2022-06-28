@@ -31,9 +31,9 @@ func getDefaults() Defaults {
 
 	//Image
 	d.image.aspect_ratio = 16.0 / 10.0
-	d.image.width = 128
-	d.image.samples_per_pixel = 10 //100
-	d.image.gamma_correction = 0.5 //0.5
+	d.image.width = 250
+	d.image.samples_per_pixel = 100 //100
+	d.image.gamma_correction = 0.5  //0.5
 
 	//Camera
 	d.camera.focal_length = 1.25   //1.0
@@ -41,7 +41,7 @@ func getDefaults() Defaults {
 	d.camera.aspect_ratio = d.image.aspect_ratio
 
 	//Ray
-	d.ray.iterationDepth = 5         //50
+	d.ray.iterationDepth = 50        //50
 	d.ray.reflectionThreshold = 0.01 //0.001
 
 	return *d

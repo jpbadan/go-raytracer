@@ -22,14 +22,14 @@ func Render(frameName string, defaults Defaults) {
 
 	// world.clear()
 	materialGround := materials.Diffuse{Albedo: lib.Color{R: 0.8, G: 0.8, B: 0.0}}
-	materialCenter := materials.Diffuse{Albedo: lib.Color{R: 0.3, G: 0.4, B: 0.5}}
-	materialLeft := materials.Metal{Albedo: lib.Color{R: 0.8, G: 0.8, B: 0.8}, Fuzz: 0.05}
+	materialCenter := materials.Dielectric{IndexOfRefraction: 1.3}
+	materialLeft := materials.Metal{Albedo: lib.Color{R: 0.3, G: 0.4, B: 0.2}, Fuzz: 0.1}
 	materialRight := materials.Metal{Albedo: lib.Color{R: 0.8, G: 0.6, B: 0.2}, Fuzz: 1.0}
 
 	world.Add(geometries.Sphere{Center: lib.Point{X: 0, Y: -100.5, Z: -1}, Radius: 100, Material: materialGround})
-	world.Add(geometries.Sphere{Center: lib.Point{X: 0, Y: 0, Z: -1}, Radius: 0.5, Material: materialCenter})
-	world.Add(geometries.Sphere{Center: lib.Point{X: -1, Y: 0, Z: -1}, Radius: 0.5, Material: materialLeft})
-	world.Add(geometries.Sphere{Center: lib.Point{X: 1, Y: 0, Z: -1}, Radius: 0.5, Material: materialRight})
+	world.Add(geometries.Sphere{Center: lib.Point{X: -0.2, Y: -0.2, Z: -0.8}, Radius: 0.3, Material: materialCenter})
+	world.Add(geometries.Sphere{Center: lib.Point{X: -0.65, Y: 0, Z: -1.3}, Radius: 0.5, Material: materialLeft})
+	world.Add(geometries.Sphere{Center: lib.Point{X: 0.7, Y: 0.4, Z: -1.4}, Radius: 0.9, Material: materialRight})
 
 	// for i := float64(-0.5); i <= 0.5; i += 0.01 {
 	// 	world.add(Sphere{lib.Point{i, 0, -1}, float64(math.Abs(float64(i * 0.6))), materialLeft})

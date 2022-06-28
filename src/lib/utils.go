@@ -61,6 +61,20 @@ func RandomInHemisphere(normal Vec) Vec {
 	}
 }
 
+// Reflects a Vector Vec relative to the Normal Vector
+func Reflect(vec, normal Vec) Vec {
+	return vec.Sub(normal.Scale(2 * vec.Dot(normal)))
+}
+
+// Refracts a vector UV relative to a normal vector
+func Refract(uv, n Vec, etai_over_etat float64) Vec {
+	cos_theta := math.Min(uv.Neg().Dot(n), 1.0)
+	r_out_perp := uv.Sum(n.Scale(cos_theta)).Scale(etai_over_etat)
+	r_out_parallel := n.Scale(-math.Sqrt(math.Abs(1.0 - r_out_perp.LengthSquared())))
+
+	return r_out_perp.Sum(r_out_parallel)
+}
+
 // 		=== FILE UTILS ===
 
 // Saves image to savePath
