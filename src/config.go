@@ -4,21 +4,21 @@ type Defaults struct {
 	output_path string
 
 	image struct {
-		aspect_ratio      float32
+		aspect_ratio      float64
 		width             int
 		samples_per_pixel int
-		gamma_correction  float32
+		gamma_correction  float64
 	}
 
 	camera struct {
-		focal_length    float32
-		viewport_height float32
-		aspect_ratio    float32
+		focal_length    float64
+		viewport_height float64
+		aspect_ratio    float64
 	}
 
 	ray struct {
 		iterationDepth      int
-		reflectionThreshold float32
+		reflectionThreshold float64
 	}
 }
 
