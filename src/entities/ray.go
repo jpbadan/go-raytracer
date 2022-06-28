@@ -19,6 +19,7 @@ func (r Ray) At(t float64) lib.Point {
 	return r.Orig.Sum(r.Dir.Scale(t))
 }
 
+
 //Recursive function to calculate the color of a ray
 func (r Ray) Color(world Geometry, iterationDepth int, reflectionThreshold float64) lib.Color {
 	hitRec := HitRecord{}
@@ -38,6 +39,7 @@ func (r Ray) Color(world Geometry, iterationDepth int, reflectionThreshold float
 		return lib.Color{R: 0, G: 0, B: 0}
 	}
 	t := 0.5 * (r.Dir.Unit().Y + 1.0)
+
 
 	// return a Gradient background
 	return lib.Color{R: 1.0, G: 1.0, B: 1.0}.Scale(1 - t).Sum(lib.Color{R: 0.5, G: 0.7, B: 1.0}.Scale(t))

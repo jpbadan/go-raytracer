@@ -60,7 +60,9 @@ func Render(frameName string, defaults Defaults) {
 				v := (float64(j) + rand.Float64()) / float64(image_height-1)
 
 				ray := cam.GetRay(u, v)
+
 				pixelColor = pixelColor.Sum(ray.Color(&world, defaults.ray.iterationDepth, defaults.ray.reflectionThreshold))
+
 			}
 
 			newRgba.SetRGBA(i, int(math.Abs(float64(image_height-j))), pixelColor.Correct(defaults.image.samples_per_pixel, defaults.image.gamma_correction).ToRGBA())
