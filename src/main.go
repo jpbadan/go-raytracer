@@ -10,5 +10,6 @@ func main() {
 	//TestImageOutput()
 	defaultSettings := getDefaults()
 
-	raytracer("test-render", defaultSettings)
+	Render("test-render", defaultSettings)
+
 }
